@@ -4,8 +4,6 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Suspense } from "react";
-import HeroScene from "@/components/3d/HeroScene";
 
 const Hero = () => {
   const [mounted, setMounted] = useState(false);
@@ -15,13 +13,33 @@ const Hero = () => {
   }, []);
 
   return (
-    <div className="min-h-screen flex items-center relative overflow-hidden hero-gradient pt-20">
+    <div className="min-h-screen flex items-center relative overflow-hidden pt-20">
+      {/* Video Background with Overlay */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 bg-black/60 z-10"></div>
+        <video 
+          className="w-full h-full object-cover" 
+          autoPlay 
+          muted 
+          loop 
+          playsInline
+          poster="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?auto=format&fit=crop&w=1920&q=80"
+        >
+          <source 
+            src="https://player.vimeo.com/progressive_redirect/playback/697991322/rendition/540p/file.mp4?loc=external" 
+            type="video/mp4" 
+          />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+
       <div className="container mx-auto px-4 md:px-6 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="grid grid-cols-1 gap-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
+            className="max-w-3xl mx-auto text-center"
           >
             <motion.span
               className="inline-block uppercase tracking-wider text-sm font-medium mb-6 border border-primary/20 bg-primary/5 text-primary rounded-full px-4 py-1"
@@ -29,39 +47,43 @@ const Hero = () => {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.2, duration: 0.5 }}
             >
-              Innovate Fearlessly
+              From Athletes, For Athletes
             </motion.span>
             <h1 className="heading-xl mb-6">
-              <span className="gold-text">Next-Gen</span> Digital Solutions for{" "}
-              <span className="gold-text">Unshakeable</span> Growth
+              <span className="gold-text">UNSHAKN</span> – Luxury Performance <span className="gold-text">Redefined</span>
             </h1>
-            <p className="text-xl text-muted-foreground leading-relaxed mb-8 max-w-lg">
-              Transform your digital presence with cutting-edge technology, AI-powered insights, 
-              and seamless integrations that drive real business results.
+            <p className="text-xl text-muted-foreground leading-relaxed mb-8">
+              Premium athletic wear designed for those who refuse to compromise on 
+              performance, comfort, or style. Join the movement.
             </p>
-            <div className="flex flex-wrap gap-4 items-center">
+            <div className="flex flex-wrap gap-4 items-center justify-center">
               <Link to="/products">
                 <Button size="lg" className="gold-gradient text-black font-medium">
-                  Explore Products
+                  Shop Now
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </Link>
               <Button variant="outline" size="lg">
-                Book A Demo
+                Join the Movement
               </Button>
             </div>
             
-            <div className="mt-12 flex items-center gap-6">
+            <div className="mt-12 flex items-center gap-6 justify-center">
               <div className="flex -space-x-3">
                 {[1, 2, 3, 4].map((i) => (
                   <div
                     key={i}
                     className="w-10 h-10 rounded-full border-2 border-background bg-muted overflow-hidden"
+                    style={{
+                      backgroundImage: `url(https://images.unsplash.com/photo-${1515886657613 + i * 124}?auto=format&fit=crop&w=80&h=80&q=80)`,
+                      backgroundSize: 'cover',
+                      backgroundPosition: 'center'
+                    }}
                   />
                 ))}
               </div>
               <div>
-                <p className="font-medium">Trusted by 2,000+ businesses</p>
+                <p className="font-medium">Trusted by 2,000+ athletes</p>
                 <div className="flex items-center text-amber-400 mt-1">
                   {[1, 2, 3, 4, 5].map((i) => (
                     <span key={i} className="text-lg">★</span>
@@ -72,19 +94,6 @@ const Hero = () => {
                 </div>
               </div>
             </div>
-          </motion.div>
-
-          <motion.div
-            className="hidden lg:block h-[500px] relative"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3, duration: 0.7 }}
-          >
-            {mounted && (
-              <Suspense fallback={<div className="h-full flex items-center justify-center">Loading 3D scene...</div>}>
-                <HeroScene />
-              </Suspense>
-            )}
           </motion.div>
         </div>
       </div>

@@ -91,14 +91,49 @@
   }
   
   .heading-xl {
-    @apply text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight;
+    @apply text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight uppercase;
   }
   
   .heading-lg {
-    @apply text-3xl md:text-4xl font-bold tracking-tight;
+    @apply text-3xl md:text-4xl font-bold tracking-tight uppercase;
   }
   
   .heading-md {
-    @apply text-2xl md:text-3xl font-bold;
+    @apply text-2xl md:text-3xl font-bold uppercase;
+  }
+
+  .athletic-card {
+    @apply relative overflow-hidden rounded-md border border-white/10 hover:border-primary/50 transition-all duration-300;
+  }
+
+  .athletic-button {
+    @apply uppercase tracking-widest text-sm font-semibold;
   }
 }
+
+/* Animated gradient background */
+.animated-gradient {
+  background: linear-gradient(270deg, #f0c05a, #D4AF37, #FFD700);
+  background-size: 600% 600%;
+  animation: gradientAnimation 8s ease infinite;
+}
+
+@keyframes gradientAnimation {
+  0% { background-position: 0% 50% }
+  50% { background-position: 100% 50% }
+  100% { background-position: 0% 50% }
+}
+
+/* Product image zoom effect */
+.image-zoom {
+  @apply overflow-hidden;
+}
+
+.image-zoom img {
+  @apply transition-transform duration-700 ease-in-out w-full h-full object-cover;
+}
+
+.image-zoom:hover img {
+  @apply scale-110;
+}
+

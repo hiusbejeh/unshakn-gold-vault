@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ShoppingBag } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ThemeToggle from "@/components/ui/theme-toggle";
 import { useTheme } from "@/providers/ThemeProvider";
@@ -23,7 +23,8 @@ const Navbar = () => {
 
   const navLinks = [
     { name: "Home", path: "/" },
-    { name: "Products", path: "/products" },
+    { name: "Collection", path: "/products" },
+    { name: "About", path: "#" },
     { name: "Student Discount", path: "/student-discount" },
   ];
 
@@ -52,21 +53,33 @@ const Navbar = () => {
             <Link
               key={link.name}
               to={link.path}
-              className="text-foreground/80 hover:text-foreground transition-colors"
+              className="text-foreground/80 hover:text-foreground transition-colors uppercase tracking-wide text-sm font-medium"
             >
               {link.name}
             </Link>
           ))}
           <ThemeToggle />
+          <Link to="/products" className="relative">
+            <Button variant="outline" size="icon" className="rounded-full">
+              <ShoppingBag className="h-5 w-5" />
+              <span className="absolute -top-1 -right-1 bg-primary text-primary-foreground text-xs w-5 h-5 rounded-full flex items-center justify-center">0</span>
+            </Button>
+          </Link>
           <Link to="/login">
             <Button className="gold-gradient hover:opacity-90 text-black font-medium px-6">
-              Get Started
+              Shop Now
             </Button>
           </Link>
         </nav>
 
         {/* Mobile Menu Button */}
         <div className="flex items-center space-x-4 md:hidden">
+          <Link to="/products" className="relative">
+            <Button variant="ghost" size="icon" className="rounded-full">
+              <ShoppingBag className="h-5 w-5" />
+              <span className="absolute -top-1 -right-1 bg-primary text-primary-foreground text-xs w-5 h-5 rounded-full flex items-center justify-center">0</span>
+            </Button>
+          </Link>
           <ThemeToggle />
           <Button
             variant="ghost"
@@ -96,15 +109,15 @@ const Navbar = () => {
               <Link
                 key={link.name}
                 to={link.path}
-                className="text-foreground/80 hover:text-foreground py-2 transition-colors"
+                className="text-foreground/80 hover:text-foreground py-2 transition-colors uppercase text-sm font-medium"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {link.name}
               </Link>
             ))}
-            <Link to="/login" onClick={() => setMobileMenuOpen(false)}>
+            <Link to="/products" onClick={() => setMobileMenuOpen(false)}>
               <Button className="gold-gradient hover:opacity-90 text-black font-medium w-full">
-                Get Started
+                Shop Now
               </Button>
             </Link>
           </div>

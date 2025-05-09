@@ -2,7 +2,6 @@
 import MainLayout from "@/layouts/MainLayout";
 import VerificationForm from "@/components/student/VerificationForm";
 import VerificationSteps from "@/components/student/VerificationSteps";
-import FloatingObject from "@/components/3d/FloatingObject";
 import { motion } from "framer-motion";
 
 const StudentDiscountPage = () => {
@@ -25,8 +24,8 @@ const StudentDiscountPage = () => {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="text-lg text-muted-foreground"
             >
-              We're proud to support the next generation of innovators and creators.
-              Get verified as a student and unlock 50% off all our products.
+              We're proud to support the next generation of athletes.
+              Get verified as a student and unlock 50% off all our premium gear.
             </motion.p>
           </div>
 
@@ -39,9 +38,35 @@ const StudentDiscountPage = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8 }}
-              className="order-1 lg:order-2 h-[400px]"
+              className="order-1 lg:order-2 h-[400px] relative overflow-hidden rounded-xl"
             >
-              <FloatingObject color="#F0C05A" speed={0.8} distort={0.4} scale={2} />
+              <motion.div 
+                className="absolute inset-0 bg-gradient-to-br from-gold via-gold-dark to-black opacity-60"
+                animate={{ 
+                  backgroundPosition: ['0% 0%', '100% 100%'],
+                }}
+                transition={{ 
+                  duration: 20,
+                  repeat: Infinity,
+                  repeatType: "reverse"
+                }}
+              />
+              
+              <img 
+                src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1000&h=800&q=80" 
+                alt="Students with Unshakn gear" 
+                className="absolute inset-0 w-full h-full object-cover mix-blend-overlay"
+              />
+              
+              <div className="absolute inset-0 flex items-center justify-center">
+                <motion.div 
+                  className="text-5xl md:text-7xl font-bold text-white text-opacity-90"
+                  animate={{ scale: [1, 1.05, 1], opacity: [0.9, 1, 0.9] }}
+                  transition={{ duration: 4, repeat: Infinity }}
+                >
+                  50% OFF
+                </motion.div>
+              </div>
             </motion.div>
           </div>
 
