@@ -1,0 +1,69 @@
+
+{
+  "sizes": [
+    {
+      "size": "XS",
+      "weightRange": [40, 55],
+      "heightRange": [150, 165],
+      "bodyType": "Slim",
+      "message": "This size will give you a fitted look for your slim frame."
+    },
+    {
+      "size": "S",
+      "weightRange": [55, 65],
+      "heightRange": [160, 170],
+      "bodyType": "Slim/Athletic",
+      "message": "This size offers a slightly fitted look while maintaining comfort."
+    },
+    {
+      "size": "M",
+      "weightRange": [65, 80],
+      "heightRange": [165, 180],
+      "bodyType": "Athletic",
+      "message": "This size will provide an ideal fit for your athletic build."
+    },
+    {
+      "size": "L",
+      "weightRange": [75, 90],
+      "heightRange": [175, 185],
+      "bodyType": "Athletic/Bulky",
+      "message": "This size offers comfort while maintaining a stylish fit."
+    },
+    {
+      "size": "XL",
+      "weightRange": [85, 100],
+      "heightRange": [180, 190],
+      "bodyType": "Bulky",
+      "message": "This size ensures comfort and a confident fit for your build."
+    },
+    {
+      "size": "XXL",
+      "weightRange": [95, 200],
+      "heightRange": [185, 210],
+      "bodyType": "Bulky",
+      "message": "This size provides maximum comfort for your frame."
+    }
+  ],
+  "bmiRanges": [
+    {
+      "range": [0, 18.5],
+      "adjustment": "-1",
+      "bodyType": "Slim"
+    },
+    {
+      "range": [18.5, 25],
+      "adjustment": "0",
+      "bodyType": "Athletic"
+    },
+    {
+      "range": [25, 30],
+      "adjustment": "+0.5",
+      "bodyType": "Athletic"
+    },
+    {
+      "range": [30, 100],
+      "adjustment": "+1",
+      "bodyType": "Bulky"
+    }
+  ]
+}

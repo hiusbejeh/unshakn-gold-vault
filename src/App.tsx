@@ -19,6 +19,18 @@ import SettingsPage from "./pages/dashboard/SettingsPage";
 import AnalyticsPage from "./pages/dashboard/AnalyticsPage";
 import NotFound from "./pages/NotFound";
 
+// Admin Pages
+import AdminLogin from "./pages/admin/AdminLogin";
+import AdminProducts from "./pages/admin/AdminProducts";
+import AdminUpload from "./pages/admin/AdminUpload";
+import AdminWishlist from "./pages/admin/AdminWishlist";
+import AdminInventory from "./pages/admin/AdminInventory";
+import AdminSizeEstimator from "./pages/admin/AdminSizeEstimator";
+import AdminTheme from "./pages/admin/AdminTheme";
+import AdminReviews from "./pages/admin/AdminReviews";
+import AdminStats from "./pages/admin/AdminStats";
+import AdminGuard from "./components/admin/AdminGuard";
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -39,6 +51,18 @@ const App = () => (
             <Route path="/dashboard/products" element={<ProductsManagement />} />
             <Route path="/dashboard/settings" element={<SettingsPage />} />
             <Route path="/dashboard/analytics" element={<AnalyticsPage />} />
+            
+            {/* Admin Routes */}
+            <Route path="/admin" element={<AdminLogin />} />
+            <Route path="/admin/products" element={<AdminGuard><AdminProducts /></AdminGuard>} />
+            <Route path="/admin/upload" element={<AdminGuard><AdminUpload /></AdminGuard>} />
+            <Route path="/admin/wishlist" element={<AdminGuard><AdminWishlist /></AdminGuard>} />
+            <Route path="/admin/inventory" element={<AdminGuard><AdminInventory /></AdminGuard>} />
+            <Route path="/admin/size-estimator" element={<AdminGuard><AdminSizeEstimator /></AdminGuard>} />
+            <Route path="/admin/theme" element={<AdminGuard><AdminTheme /></AdminGuard>} />
+            <Route path="/admin/reviews" element={<AdminGuard><AdminReviews /></AdminGuard>} />
+            <Route path="/admin/stats" element={<AdminGuard><AdminStats /></AdminGuard>} />
+            
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
