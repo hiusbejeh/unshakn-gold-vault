@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Suspense } from "react";
 import HeroScene from "@/components/3d/HeroScene";
 
 const Hero = () => {
@@ -79,7 +80,11 @@ const Hero = () => {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.7 }}
           >
-            {mounted && <HeroScene />}
+            {mounted && (
+              <Suspense fallback={<div className="h-full flex items-center justify-center">Loading 3D scene...</div>}>
+                <HeroScene />
+              </Suspense>
+            )}
           </motion.div>
         </div>
       </div>

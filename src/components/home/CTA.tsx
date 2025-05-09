@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Suspense } from "react";
 import FloatingObject from "@/components/3d/FloatingObject";
 
 const CTA = () => {
@@ -24,7 +25,9 @@ const CTA = () => {
             className="glass-card p-8 md:p-12 rounded-2xl text-center"
           >
             <div className="h-32 relative mb-8 mx-auto w-full max-w-xs">
-              <FloatingObject color="#f0c05a" speed={1.2} distort={0.4} scale={1.6} />
+              <Suspense fallback={<div className="h-full flex items-center justify-center">Loading 3D element...</div>}>
+                <FloatingObject color="#f0c05a" speed={1.2} distort={0.4} scale={1.6} />
+              </Suspense>
             </div>
             
             <h2 className="heading-lg mb-6">
