@@ -6,11 +6,13 @@ import { Menu, X, ShoppingBag } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ThemeToggle from "@/components/ui/theme-toggle";
 import { useTheme } from "@/providers/ThemeProvider";
+import { useCart } from "@/hooks/useCart";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { theme } = useTheme();
+  const { totalItems } = useCart();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -59,13 +61,17 @@ const Navbar = () => {
             </Link>
           ))}
           <ThemeToggle />
-          <Link to="/products" className="relative">
+          <Link to="/cart" className="relative">
             <Button variant="outline" size="icon" className="rounded-full">
               <ShoppingBag className="h-5 w-5" />
-              <span className="absolute -top-1 -right-1 bg-primary text-primary-foreground text-xs w-5 h-5 rounded-full flex items-center justify-center">0</span>
+              {totalItems > 0 && (
+                <span className="absolute -top-1 -right-1 bg-primary text-primary-foreground text-xs w-5 h-5 rounded-full flex items-center justify-center">
+                  {totalItems}
+                </span>
+              )}
             </Button>
           </Link>
-          <Link to="/login">
+          <Link to="/products">
             <Button className="gold-gradient hover:opacity-90 text-black font-medium px-6">
               Shop Now
             </Button>
@@ -74,10 +80,14 @@ const Navbar = () => {
 
         {/* Mobile Menu Button */}
         <div className="flex items-center space-x-4 md:hidden">
-          <Link to="/products" className="relative">
+          <Link to="/cart" className="relative">
             <Button variant="ghost" size="icon" className="rounded-full">
               <ShoppingBag className="h-5 w-5" />
-              <span className="absolute -top-1 -right-1 bg-primary text-primary-foreground text-xs w-5 h-5 rounded-full flex items-center justify-center">0</span>
+              {totalItems > 0 && (
+                <span className="absolute -top-1 -right-1 bg-primary text-primary-foreground text-xs w-5 h-5 rounded-full flex items-center justify-center">
+                  {totalItems}
+                </span>
+              )}
             </Button>
           </Link>
           <ThemeToggle />

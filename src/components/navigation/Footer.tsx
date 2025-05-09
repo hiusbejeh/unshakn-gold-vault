@@ -50,10 +50,10 @@ const Footer = () => {
   ];
 
   const socialLinks = [
-    { name: "Facebook", icon: <Facebook className="h-5 w-5" /> },
-    { name: "Twitter", icon: <Twitter className="h-5 w-5" /> },
-    { name: "Instagram", icon: <Instagram className="h-5 w-5" /> },
-    { name: "LinkedIn", icon: <Linkedin className="h-5 w-5" /> },
+    { name: "Instagram", icon: <Instagram className="h-5 w-5" />, url: "https://instagram.com/unshaknwears" },
+    { name: "Facebook", icon: <Facebook className="h-5 w-5" />, url: "#" },
+    { name: "Twitter", icon: <Twitter className="h-5 w-5" />, url: "#" },
+    { name: "LinkedIn", icon: <Linkedin className="h-5 w-5" />, url: "#" },
   ];
 
   return (
@@ -65,23 +65,46 @@ const Footer = () => {
               <span className="text-2xl font-bold gold-text">UNSHAKN</span>
             </div>
             <p className="text-muted-foreground max-w-md mb-8">
-              Empowering digital innovation with cutting-edge solutions that transform
-              how businesses operate and succeed in today's fast-paced environment.
+              Luxury athletic wear designed for peak performance. 
+              From athletes, for athletes - conquer your limits with UNSHAKN.
             </p>
-            <form onSubmit={handleSubmit} className="flex max-w-sm gap-2">
-              <Input
-                type="email"
-                placeholder="Enter your email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                className="bg-background"
-              />
-              <Button type="submit" className="gold-gradient text-black">
-                <Mail className="h-4 w-4 mr-2" />
-                Subscribe
-              </Button>
-            </form>
+            
+            <div className="mb-8">
+              <h3 className="font-semibold text-lg mb-4">Subscribe to our newsletter</h3>
+              <form onSubmit={handleSubmit} className="flex max-w-sm gap-2">
+                <Input
+                  type="email"
+                  placeholder="Enter your email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  className="bg-background"
+                />
+                <Button type="submit" className="gold-gradient text-black">
+                  <Mail className="h-4 w-4 mr-2" />
+                  Subscribe
+                </Button>
+              </form>
+            </div>
+            
+            <div className="flex space-x-4 items-center">
+              <span className="text-sm font-medium">Follow us:</span>
+              {socialLinks.map((social) => (
+                <motion.a
+                  key={social.name}
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={social.name}
+                  whileHover={{ y: -2 }}
+                  className={`hover:text-primary transition-colors ${
+                    social.name === "Instagram" ? "text-primary" : ""
+                  }`}
+                >
+                  {social.icon}
+                </motion.a>
+              ))}
+            </div>
           </div>
 
           {footerLinks.map((category) => (
@@ -109,17 +132,15 @@ const Footer = () => {
           </p>
 
           <div className="flex space-x-4 mt-4 md:mt-0">
-            {socialLinks.map((social) => (
-              <motion.a
-                key={social.name}
-                href="#"
-                aria-label={social.name}
-                whileHover={{ y: -2 }}
-                className="hover:text-primary transition-colors"
-              >
-                {social.icon}
-              </motion.a>
-            ))}
+            <Link to="#" className="text-sm text-muted-foreground hover:text-foreground">
+              Privacy
+            </Link>
+            <Link to="#" className="text-sm text-muted-foreground hover:text-foreground">
+              Terms
+            </Link>
+            <Link to="#" className="text-sm text-muted-foreground hover:text-foreground">
+              Cookies
+            </Link>
           </div>
         </div>
       </div>

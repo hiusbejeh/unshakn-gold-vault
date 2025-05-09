@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { Package, Pencil, Trash } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
+import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import {
   Table,
@@ -16,17 +17,21 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
-const ProductsTable = () => {
-  const { toast } = useToast();
+interface ProductsTableProps {
+  onEditProduct?: (product: Product) => void;
+}
+
+const ProductsTable = ({ onEditProduct }: ProductsTableProps) => {
+  const { toast: uiToast } = useToast();
   const [products, setProducts] = useState<Product[]>(initialProducts);
-  const [editingProduct, setEditingProduct] = useState<Product | null>(null);
-  const [dialogOpen, setDialogOpen] = useState(false);
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
   const [productToDelete, setProductToDelete] = useState<string | null>(null);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const handleEdit = (product: Product) => {
-    setEditingProduct(product);
-    setDialogOpen(true);
+    if (onEditProduct) {
+      onEditProduct(product);
+    }
   };
 
   const handleDelete = (id: string) => {
@@ -38,53 +43,76 @@ const ProductsTable = () => {
     if (productToDelete) {
       setProducts(products.filter((p) => p.id !== productToDelete));
       setIsDeleteDialogOpen(false);
-      toast({
-        title: "Product Deleted",
-        description: "The product has been successfully deleted.",
-      });
+      toast.success("Product deleted successfully");
     }
   };
 
-  const handleSaveChanges = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (editingProduct) {
-      setProducts(
-        products.map((p) => (p.id === editingProduct.id ? editingProduct : p))
+  const filteredProducts = searchTerm.trim() === "" 
+    ? products 
+    : products.filter(product => 
+        product.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
+        product.category.toLowerCase().includes(searchTerm.toLowerCase())
       );
-      setDialogOpen(false);
-      toast({
-        title: "Product Updated",
-        description: "The product has been successfully updated.",
-      });
-    }
-  };
 
   return (
     <div>
-      <h2 className="text-2xl font-bold mb-6 flex items-center">
-        <Package className="mr-2" />
-        Manage Products
-      </h2>
+      <div className="mb-6 flex flex-col sm:flex-row justify-between gap-4">
+        <h2 className="text-2xl font-bold flex items-center">
+          <Package className="mr-2" />
+          Manage Products
+        </h2>
+        
+        <div className="w-full sm:w-64">
+          <Input
+            placeholder="Search products..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="w-full"
+          />
+        </div>
+      </div>
 
       <div className="bg-card rounded-lg border p-4 overflow-hidden">
         <div className="overflow-x-auto">
           <Table>
             <TableHeader>
               <TableRow>
+                <TableHead className="w-[80px]">Image</TableHead>
                 <TableHead>Name</TableHead>
                 <TableHead>Category</TableHead>
                 <TableHead>Price</TableHead>
-                <TableHead className="w-[100px]">Actions</TableHead>
+                <TableHead>Status</TableHead>
+                <TableHead className="w-[100px] text-right">Actions</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
-              {products.map((product) => (
+              {filteredProducts.map((product) => (
                 <TableRow key={product.id}>
+                  <TableCell>
+                    <div className="w-12 h-12 rounded overflow-hidden">
+                      <img 
+                        src={product.image} 
+                        alt={product.name}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  </TableCell>
                   <TableCell className="font-medium">{product.name}</TableCell>
                   <TableCell>{product.category}</TableCell>
                   <TableCell>${product.price}</TableCell>
                   <TableCell>
-                    <div className="flex space-x-2">
+                    <span 
+                      className={`px-2 py-1 rounded-full text-xs font-medium ${
+                        product.isSoldOut 
+                          ? "bg-destructive/10 text-destructive" 
+                          : "bg-green-500/10 text-green-500"
+                      }`}
+                    >
+                      {product.isSoldOut ? "Sold Out" : "In Stock"}
+                    </span>
+                  </TableCell>
+                  <TableCell>
+                    <div className="flex space-x-2 justify-end">
                       <Button
                         variant="ghost"
                         size="icon"
@@ -103,96 +131,18 @@ const ProductsTable = () => {
                   </TableCell>
                 </TableRow>
               ))}
+
+              {filteredProducts.length === 0 && (
+                <TableRow>
+                  <TableCell colSpan={6} className="text-center py-8 text-muted-foreground">
+                    No products found
+                  </TableCell>
+                </TableRow>
+              )}
             </TableBody>
           </Table>
         </div>
       </div>
-
-      {/* Edit Product Dialog */}
-      <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>Edit Product</DialogTitle>
-          </DialogHeader>
-          {editingProduct && (
-            <form onSubmit={handleSaveChanges} className="space-y-4 mt-4">
-              <div className="space-y-2">
-                <Label htmlFor="name">Product Name</Label>
-                <Input
-                  id="name"
-                  value={editingProduct.name}
-                  onChange={(e) =>
-                    setEditingProduct({
-                      ...editingProduct,
-                      name: e.target.value,
-                    })
-                  }
-                  required
-                />
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="category">Category</Label>
-                <Input
-                  id="category"
-                  value={editingProduct.category}
-                  onChange={(e) =>
-                    setEditingProduct({
-                      ...editingProduct,
-                      category: e.target.value,
-                    })
-                  }
-                  required
-                />
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="price">Price</Label>
-                <Input
-                  id="price"
-                  type="number"
-                  value={editingProduct.price}
-                  onChange={(e) =>
-                    setEditingProduct({
-                      ...editingProduct,
-                      price: Number(e.target.value),
-                    })
-                  }
-                  required
-                />
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="description">Description</Label>
-                <Input
-                  id="description"
-                  value={editingProduct.description}
-                  onChange={(e) =>
-                    setEditingProduct({
-                      ...editingProduct,
-                      description: e.target.value,
-                    })
-                  }
-                  required
-                />
-              </div>
-
-              <div className="flex justify-end gap-2 mt-4">
-                <Button
-                  type="button"
-                  variant="outline"
-                  onClick={() => setDialogOpen(false)}
-                >
-                  Cancel
-                </Button>
-                <Button type="submit" className="gold-gradient text-black">
-                  Save Changes
-                </Button>
-              </div>
-            </form>
-          )}
-        </DialogContent>
-      </Dialog>
 
       {/* Delete Confirmation Dialog */}
       <Dialog open={isDeleteDialogOpen} onOpenChange={setIsDeleteDialogOpen}>

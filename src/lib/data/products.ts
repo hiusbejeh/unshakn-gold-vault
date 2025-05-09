@@ -1,90 +1,135 @@
 
-export type Product = {
+export interface Product {
   id: string;
   name: string;
-  description: string;
   price: number;
+  description: string;
   category: string;
   image: string;
   features: string[];
-};
+  isSoldOut?: boolean;
+}
+
+export const categories = [
+  "All",
+  "Tracksuits",
+  "T-Shirts",
+  "Bottoms",
+  "Accessories"
+];
 
 export const products: Product[] = [
   {
     id: "1",
-    name: "Analytics Pro",
-    description: "Advanced analytics solution with AI-powered insights.",
-    price: 199,
-    category: "Analytics",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
-    features: ["Real-time data processing", "Custom dashboards", "Predictive modeling", "API access"]
+    name: "Elite Performance Tracksuit",
+    price: 189.99,
+    description: "Premium athletic tracksuit designed for maximum performance and comfort during intense training sessions.",
+    category: "Tracksuits",
+    image: "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+    features: [
+      "Moisture-wicking fabric",
+      "4-way stretch material",
+      "Reflective details for visibility",
+      "Secure zippered pockets"
+    ]
   },
   {
     id: "2",
-    name: "IntegrationHub",
-    description: "Connect all your tools and platforms seamlessly.",
-    price: 149,
-    category: "Integration",
-    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80",
-    features: ["200+ app connections", "Visual workflow builder", "Automated syncing", "Custom webhooks"]
+    name: "Pro Compression T-Shirt",
+    price: 59.99,
+    description: "High-performance compression t-shirt that supports muscles and improves blood circulation during workouts.",
+    category: "T-Shirts",
+    image: "https://images.unsplash.com/photo-1521805103424-d8f8430e8933?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80",
+    features: [
+      "Compression fit",
+      "Anti-odor technology",
+      "UPF 30+ sun protection",
+      "Seamless construction"
+    ]
   },
   {
     id: "3",
-    name: "SecureVault",
-    description: "Enterprise-grade security for all your sensitive data.",
-    price: 299,
-    category: "Security",
-    image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=800&q=80",
-    features: ["End-to-end encryption", "Access controls", "Compliance monitoring", "Threat detection"]
+    name: "Ultra Flex Training Bottoms",
+    price: 79.99,
+    description: "Versatile training pants with unmatched flexibility and durability for all types of workouts.",
+    category: "Bottoms",
+    image: "https://images.unsplash.com/photo-1594381898411-846e7d193883?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+    features: [
+      "Elastic waistband with drawcord",
+      "Quick-dry technology",
+      "Zippered ankle cuffs",
+      "Hidden pocket for valuables"
+    ]
   },
   {
     id: "4",
-    name: "CollabSpace",
-    description: "Real-time collaboration platform for distributed teams.",
-    price: 99,
-    category: "Collaboration",
-    image: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=800&q=80",
-    features: ["Document sharing", "Video meetings", "Task management", "Team chat"]
+    name: "Performance Sports Bra",
+    price: 49.99,
+    description: "High-impact sports bra offering maximum support and comfort for intense training sessions.",
+    category: "Accessories",
+    image: "https://images.unsplash.com/photo-1434682881908-b43d0467b798?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+    features: [
+      "Racerback design",
+      "Removable cups",
+      "Breathable mesh panels",
+      "Wide elastic band for support"
+    ]
   },
   {
     id: "5",
-    name: "CloudScale",
-    description: "Scalable cloud infrastructure that grows with your needs.",
-    price: 249,
-    category: "Infrastructure",
-    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
-    features: ["Auto-scaling", "Load balancing", "Global CDN", "99.9% uptime guarantee"]
+    name: "Limited Edition Gold Tracksuit",
+    price: 249.99,
+    description: "Our signature tracksuit with gold accents, crafted from premium materials for the athlete who demands the best.",
+    category: "Tracksuits",
+    image: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1000&q=80",
+    features: [
+      "Premium gold hardware",
+      "Water-resistant outer shell",
+      "Temperature regulating lining",
+      "Custom embroidered logo"
+    ],
+    isSoldOut: true
   },
   {
     id: "6",
-    name: "CustomerInsight",
-    description: "Understand your customers better with advanced analysis.",
-    price: 179,
-    category: "Analytics",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
-    features: ["Behavior tracking", "Sentiment analysis", "Customer segmentation", "ROI reporting"]
+    name: "Power Lift Compression Shorts",
+    price: 54.99,
+    description: "Designed specifically for weightlifting with reinforced seams and compression support for major muscle groups.",
+    category: "Bottoms",
+    image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+    features: [
+      "High-compression fabric",
+      "Silicone grip thigh bands",
+      "Reinforced stitching",
+      "Squat-proof design"
+    ]
   },
   {
     id: "7",
-    name: "DevOpsFlow",
-    description: "Streamline your development and operations workflow.",
-    price: 219,
-    category: "Development",
-    image: "https://images.unsplash.com/photo-1607705703571-c5a8695f18f6?auto=format&fit=crop&w=800&q=80",
-    features: ["CI/CD pipelines", "Infrastructure as code", "Monitoring", "Incident management"]
+    name: "Breathe Tech Training Vest",
+    price: 44.99,
+    description: "Lightweight training vest with enhanced ventilation for maximum cooling during high-intensity workouts.",
+    category: "T-Shirts",
+    image: "https://images.unsplash.com/photo-1518609878373-06d740f63d8b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80",
+    features: [
+      "Mesh back panel",
+      "Ergonomic armholes",
+      "Reflective logo",
+      "Extended length for coverage"
+    ]
   },
   {
     id: "8",
-    name: "MarketingAutomation",
-    description: "Automate your marketing campaigns for better results.",
-    price: 159,
-    category: "Marketing",
-    image: "https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?auto=format&fit=crop&w=800&q=80",
-    features: ["Email campaigns", "Social media scheduling", "Landing page builder", "A/B testing"]
-  },
-];
-
-export const categories = [
-  "All",
-  ...Array.from(new Set(products.map(product => product.category))).sort()
+    name: "Performance Headband",
+    price: 24.99,
+    description: "Stay focused with our non-slip headband that wicks away sweat and keeps hair out of your face during workouts.",
+    category: "Accessories",
+    image: "https://images.unsplash.com/photo-1616266481594-a1a82b55755f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80",
+    features: [
+      "Silicone grip strip",
+      "Quick-drying fabric",
+      "Lightweight and packable",
+      "One size fits most"
+    ]
+  }
 ];

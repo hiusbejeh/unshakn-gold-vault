@@ -8,7 +8,9 @@ import { ThemeProvider } from "@/providers/ThemeProvider";
 
 // Pages
 import HomePage from "./pages/HomePage";
-import ProductsPage from "./pages/ProductsPage";
+import ProductPage from "./pages/ProductPage";
+import CartPage from "./pages/CartPage";
+import ProductDetailsPage from "./pages/ProductDetailsPage";
 import StudentDiscountPage from "./pages/StudentDiscountPage";
 import LoginPage from "./pages/LoginPage";
 import DashboardHome from "./pages/dashboard/DashboardHome";
@@ -28,7 +30,9 @@ const App = () => (
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/products" element={<ProductsPage />} />
+            <Route path="/products" element={<ProductPage />} />
+            <Route path="/cart" element={<CartPage />} />
+            <Route path="/product/:id" element={<ProductDetailsPage />} />
             <Route path="/student-discount" element={<StudentDiscountPage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/dashboard" element={<DashboardHome />} />
