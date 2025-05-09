@@ -5,6 +5,7 @@ import Features from "@/components/home/Features";
 import Testimonials from "@/components/home/Testimonials";
 import CTA from "@/components/home/CTA";
 import InstagramFeed from "@/components/social/InstagramFeed";
+import { Instagram } from "lucide-react";
 
 const HomePage = () => {
   return (

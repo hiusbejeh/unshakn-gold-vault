@@ -5,13 +5,31 @@ import ProductCard from "@/components/products/ProductCard";
 import ProductFilter from "@/components/products/ProductFilter";
 import { categories, products } from "@/lib/data/products";
 import { motion } from "framer-motion";
+import { useCart } from "@/hooks/useCart";
 
 const ProductsPage = () => {
   const [activeCategory, setActiveCategory] = useState("All");
+  const { addToCart } = useCart();
 
   const filteredProducts = activeCategory === "All"
     ? products
     : products.filter(product => product.category === activeCategory);
+    
+  const handleProductClick = (productId: string) => {
+    // You could navigate to product page or open modal
+    console.log("Product clicked:", productId);
+  };
+
+  const handleAddToCart = (productId: string) => {
+    const product = products.find(p => p.id === productId);
+    if (product) {
+      addToCart({
+        ...product,
+        size: "M", // Default size
+        quantity: 1
+      });
+    }
+  };
 
   return (
     <MainLayout>
@@ -37,7 +55,12 @@ const ProductsPage = () => {
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
           >
             {filteredProducts.map(product => (
-              <ProductCard key={product.id} product={product} />
+              <ProductCard 
+                key={product.id} 
+                product={product} 
+                onClick={() => handleProductClick(product.id)}
+                onAddToCart={() => handleAddToCart(product.id)}
+              />
             ))}
 
             {filteredProducts.length === 0 && (
