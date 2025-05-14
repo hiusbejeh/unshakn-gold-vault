@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "@/providers/ThemeProvider";
 import { Button } from "@/components/ui/button";
-import { ShoppingCart, Menu, X, Instagram, TikTok } from "lucide-react";
+import { ShoppingCart, Menu, X, Instagram } from "lucide-react";
+import { TikTokIcon } from "@/components/icons/CustomIcons";
 import { useCart } from "@/hooks/useCart";
 import { useIsMobile } from "@/hooks/use-mobile";
 

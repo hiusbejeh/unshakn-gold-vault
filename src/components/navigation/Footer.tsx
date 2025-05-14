@@ -1,6 +1,6 @@
-
 import { Link } from "react-router-dom";
-import { Instagram, TikTok } from "lucide-react";
+import { Instagram } from "lucide-react";
+import { TikTokIcon } from "@/components/icons/CustomIcons";
 
 const WhatsAppIcon = () => (
   <svg 
@@ -49,7 +49,7 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 className="bg-white/10 hover:bg-primary hover:text-black w-10 h-10 rounded-full flex items-center justify-center transition-colors"
               >
-                <TikTok size={18} />
+                <TikTokIcon size={18} />
               </a>
               <a 
                 href="https://wa.me/1234567890" 

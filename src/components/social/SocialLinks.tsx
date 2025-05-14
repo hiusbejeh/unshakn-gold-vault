@@ -1,6 +1,7 @@
 
-import { Instagram, TikTok } from "lucide-react";
+import { Instagram } from "lucide-react";
 import { motion } from "framer-motion";
+import { TikTokIcon } from "@/components/icons/CustomIcons";
 
 const WhatsAppIcon = () => (
   <svg 
@@ -63,7 +64,7 @@ const SocialLinks = () => {
           >
             <div className="flex flex-col items-center gap-3">
               <div className="w-16 h-16 flex items-center justify-center rounded-full bg-gradient-to-br from-black to-gray-800 text-white group-hover:scale-110 transition-transform">
-                <TikTok size={28} />
+                <TikTokIcon />
               </div>
               <span className="font-bold">TikTok</span>
               <span className="text-sm text-muted-foreground">@unshaknwears</span>
