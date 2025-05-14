@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SocialIcons from "./SocialIcons";
+import ThemeToggle from "@/components/ui/theme-toggle";
 
 const MobileNavigation = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -62,6 +63,11 @@ const MobileNavigation = () => {
               {/* Social Media Icons for Mobile */}
               <div className="py-4">
                 <SocialIcons size={24} className="justify-center space-x-8" />
+              </div>
+              
+              {/* Theme Toggle for Mobile */}
+              <div className="flex justify-center py-4 border-t border-gray-200 dark:border-gray-800">
+                <ThemeToggle />
               </div>
             </nav>
           </motion.div>

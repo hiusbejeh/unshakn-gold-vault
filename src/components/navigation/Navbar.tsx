@@ -8,6 +8,7 @@ import DesktopNavigation from "./DesktopNavigation";
 import SocialIcons from "./SocialIcons";
 import CartButton from "./CartButton";
 import MobileNavigation from "./MobileNavigation";
+import ThemeToggle from "@/components/ui/theme-toggle";
 
 const Navbar = () => {
   const { theme } = useTheme();
@@ -52,6 +53,9 @@ const Navbar = () => {
           >
             {/* Social media links - Only show on desktop */}
             {!isMobile && <SocialIcons className="mr-2" />}
+            
+            {/* Theme toggle - Only show on desktop */}
+            {!isMobile && <ThemeToggle />}
 
             {/* Cart */}
             <CartButton />
