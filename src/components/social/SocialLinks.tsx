@@ -57,7 +57,7 @@ const SocialLinks = () => {
           </a>
           
           <a 
-            href="https://tiktok.com/@unshaknwears" 
+            href="https://www.tiktok.com/@unshakn" 
             target="_blank" 
             rel="noopener noreferrer"
             className="group"
@@ -67,12 +67,12 @@ const SocialLinks = () => {
                 <TikTokIcon />
               </div>
               <span className="font-bold">TikTok</span>
-              <span className="text-sm text-muted-foreground">@unshaknwears</span>
+              <span className="text-sm text-muted-foreground">@unshakn</span>
             </div>
           </a>
           
           <a 
-            href="https://wa.me/1234567890" 
+            href="https://wa.me/0697700205" 
             target="_blank" 
             rel="noopener noreferrer"
             className="group"

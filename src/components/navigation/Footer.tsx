@@ -44,7 +44,7 @@ const Footer = () => {
                 <Instagram size={18} />
               </a>
               <a 
-                href="https://tiktok.com/@unshaknwears" 
+                href="https://www.tiktok.com/@unshakn" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="bg-white/10 hover:bg-primary hover:text-black w-10 h-10 rounded-full flex items-center justify-center transition-colors"
@@ -52,7 +52,7 @@ const Footer = () => {
                 <TikTokIcon size={18} />
               </a>
               <a 
-                href="https://wa.me/1234567890" 
+                href="https://wa.me/0697700205" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="bg-white/10 hover:bg-primary hover:text-black w-10 h-10 rounded-full flex items-center justify-center transition-colors"

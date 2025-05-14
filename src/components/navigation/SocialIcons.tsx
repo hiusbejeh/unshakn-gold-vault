@@ -20,7 +20,7 @@ const SocialIcons = ({ size = 20, className = "" }: SocialIconsProps) => {
         <Instagram size={size} />
       </a>
       <a
-        href="https://tiktok.com/@unshaknwears"
+        href="https://www.tiktok.com/@unshakn"
         target="_blank"
         rel="noopener noreferrer"
         className="text-muted-foreground hover:text-primary transition-colors"
@@ -28,7 +28,7 @@ const SocialIcons = ({ size = 20, className = "" }: SocialIconsProps) => {
         <TikTokIcon size={size} />
       </a>
       <a
-        href="https://wa.me/1234567890"
+        href="https://wa.me/0697700205"
         target="_blank"
         rel="noopener noreferrer"
         className="text-muted-foreground hover:text-primary transition-colors"
