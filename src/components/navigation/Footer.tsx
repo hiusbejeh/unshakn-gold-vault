@@ -1,146 +1,95 @@
 
-import { useState } from "react";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
-import { Facebook, Instagram, Twitter, Linkedin, Mail } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { useToast } from "@/components/ui/use-toast";
+import { Instagram, TikTok } from "lucide-react";
+
+const WhatsAppIcon = () => (
+  <svg 
+    xmlns="http://www.w3.org/2000/svg" 
+    width="20" 
+    height="20" 
+    viewBox="0 0 24 24" 
+    fill="none" 
+    stroke="currentColor" 
+    strokeWidth="2" 
+    strokeLinecap="round" 
+    strokeLinejoin="round" 
+    className="lucide lucide-whatsapp"
+  >
+    <path d="M21 12a9 9 0 0 1-16.519 4.913L3 21l4.087-1.481A9 9 0 1 1 21 12Z" />
+    <path d="M9 10a1 1 0 0 1 2 0v4a1 1 0 1 1-2 0v-4Z" />
+    <path d="M13 13a1 1 0 0 1 2 0v1a1 1 0 1 1-2 0v-1Z" />
+  </svg>
+);
 
 const Footer = () => {
-  const { toast } = useToast();
-  const [email, setEmail] = useState("");
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (email) {
-      toast({
-        title: "Newsletter",
-        description: "Thanks for subscribing!",
-      });
-      setEmail("");
-    }
-  };
-
-  const footerLinks = [
-    {
-      title: "Company",
-      links: [
-        { name: "About", path: "#" },
-        { name: "Careers", path: "#" },
-        { name: "Blog", path: "#" },
-      ],
-    },
-    {
-      title: "Products",
-      links: [
-        { name: "All Products", path: "/products" },
-        { name: "Pricing", path: "#" },
-        { name: "Student Discount", path: "/student-discount" },
-      ],
-    },
-    {
-      title: "Legal",
-      links: [
-        { name: "Privacy Policy", path: "#" },
-        { name: "Terms of Service", path: "#" },
-        { name: "Cookies", path: "#" },
-      ],
-    },
-  ];
-
-  const socialLinks = [
-    { name: "Instagram", icon: <Instagram className="h-5 w-5" />, url: "https://instagram.com/unshaknwears" },
-    { name: "Facebook", icon: <Facebook className="h-5 w-5" />, url: "#" },
-    { name: "Twitter", icon: <Twitter className="h-5 w-5" />, url: "#" },
-    { name: "LinkedIn", icon: <Linkedin className="h-5 w-5" />, url: "#" },
-  ];
-
   return (
-    <footer className="bg-muted/30 pt-16 pb-6">
+    <footer className="bg-black text-white pt-16 pb-8">
       <div className="container mx-auto px-4 md:px-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
-          <div className="lg:col-span-2">
-            <div className="mb-6">
-              <span className="text-2xl font-bold gold-text">UNSHAKN</span>
-            </div>
-            <p className="text-muted-foreground max-w-md mb-8">
-              Luxury athletic wear designed for peak performance. 
-              From athletes, for athletes - conquer your limits with UNSHAKN.
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+          <div className="md:col-span-2">
+            <Link to="/" className="inline-block mb-4">
+              <span className="text-2xl font-extrabold tracking-tighter gold-text">UNSHAKN</span>
+            </Link>
+            <p className="text-gray-400 max-w-md">
+              Premium athletic wear designed for those who refuse to compromise on performance, 
+              comfort, or style. FROM ATHLETES, FOR ATHLETES.
             </p>
-            
-            <div className="mb-8">
-              <h3 className="font-semibold text-lg mb-4">Subscribe to our newsletter</h3>
-              <form onSubmit={handleSubmit} className="flex max-w-sm gap-2">
-                <Input
-                  type="email"
-                  placeholder="Enter your email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                  className="bg-background"
-                />
-                <Button type="submit" className="gold-gradient text-black">
-                  <Mail className="h-4 w-4 mr-2" />
-                  Subscribe
-                </Button>
-              </form>
-            </div>
-            
-            <div className="flex space-x-4 items-center">
-              <span className="text-sm font-medium">Follow us:</span>
-              {socialLinks.map((social) => (
-                <motion.a
-                  key={social.name}
-                  href={social.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={social.name}
-                  whileHover={{ y: -2 }}
-                  className={`hover:text-primary transition-colors ${
-                    social.name === "Instagram" ? "text-primary" : ""
-                  }`}
-                >
-                  {social.icon}
-                </motion.a>
-              ))}
+            <div className="flex space-x-4 mt-6">
+              <a 
+                href="https://instagram.com/unshaknwears" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="bg-white/10 hover:bg-primary hover:text-black w-10 h-10 rounded-full flex items-center justify-center transition-colors"
+              >
+                <Instagram size={18} />
+              </a>
+              <a 
+                href="https://tiktok.com/@unshaknwears" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="bg-white/10 hover:bg-primary hover:text-black w-10 h-10 rounded-full flex items-center justify-center transition-colors"
+              >
+                <TikTok size={18} />
+              </a>
+              <a 
+                href="https://wa.me/1234567890" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="bg-white/10 hover:bg-primary hover:text-black w-10 h-10 rounded-full flex items-center justify-center transition-colors"
+              >
+                <WhatsAppIcon />
+              </a>
             </div>
           </div>
-
-          {footerLinks.map((category) => (
-            <div key={category.title}>
-              <h3 className="font-semibold text-lg mb-4">{category.title}</h3>
-              <ul className="space-y-3">
-                {category.links.map((link) => (
-                  <li key={link.name}>
-                    <Link
-                      to={link.path}
-                      className="text-muted-foreground hover:text-foreground transition-colors"
-                    >
-                      {link.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+          
+          <div>
+            <h3 className="text-lg font-bold mb-4">Shop</h3>
+            <ul className="space-y-2">
+              <li><Link to="/products" className="text-gray-400 hover:text-primary transition-colors">All Products</Link></li>
+              <li><Link to="/products?category=Tracksuits" className="text-gray-400 hover:text-primary transition-colors">Tracksuits</Link></li>
+              <li><Link to="/products?category=T-Shirts" className="text-gray-400 hover:text-primary transition-colors">T-Shirts</Link></li>
+              <li><Link to="/products?category=Bottoms" className="text-gray-400 hover:text-primary transition-colors">Bottoms</Link></li>
+              <li><Link to="/products?category=Accessories" className="text-gray-400 hover:text-primary transition-colors">Accessories</Link></li>
+            </ul>
+          </div>
+          
+          <div>
+            <h3 className="text-lg font-bold mb-4">Support</h3>
+            <ul className="space-y-2">
+              <li><Link to="/contact" className="text-gray-400 hover:text-primary transition-colors">Contact Us</Link></li>
+              <li><Link to="/faq" className="text-gray-400 hover:text-primary transition-colors">FAQs</Link></li>
+              <li><Link to="/shipping" className="text-gray-400 hover:text-primary transition-colors">Shipping</Link></li>
+              <li><Link to="/returns" className="text-gray-400 hover:text-primary transition-colors">Returns</Link></li>
+              <li><Link to="/size-guide" className="text-gray-400 hover:text-primary transition-colors">Size Guide</Link></li>
+            </ul>
+          </div>
         </div>
-
-        <div className="border-t border-border mt-12 pt-6 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-sm text-muted-foreground">
-            &copy; {new Date().getFullYear()} Unshakn. All rights reserved.
-          </p>
-
+        
+        <div className="border-t border-white/10 pt-8 mt-8 flex flex-col md:flex-row justify-between items-center text-gray-500 text-sm">
+          <p>© {new Date().getFullYear()} UNSHAKN. All rights reserved.</p>
           <div className="flex space-x-4 mt-4 md:mt-0">
-            <Link to="#" className="text-sm text-muted-foreground hover:text-foreground">
-              Privacy
-            </Link>
-            <Link to="#" className="text-sm text-muted-foreground hover:text-foreground">
-              Terms
-            </Link>
-            <Link to="#" className="text-sm text-muted-foreground hover:text-foreground">
-              Cookies
-            </Link>
+            <Link to="/privacy" className="hover:text-primary">Privacy Policy</Link>
+            <Link to="/terms" className="hover:text-primary">Terms of Service</Link>
           </div>
         </div>
       </div>

@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ShoppingCart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const Hero = () => {
@@ -16,14 +16,14 @@ const Hero = () => {
     <div className="min-h-screen flex items-center relative overflow-hidden pt-20">
       {/* Video Background with Overlay */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-black/60 z-10"></div>
+        <div className="absolute inset-0 bg-black/70 z-10"></div>
         <video 
           className="w-full h-full object-cover" 
           autoPlay 
           muted 
           loop 
           playsInline
-          poster="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?auto=format&fit=crop&w=1920&q=80"
+          poster="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1920&q=80"
         >
           <source 
             src="https://player.vimeo.com/progressive_redirect/playback/697991322/rendition/540p/file.mp4?loc=external" 
@@ -42,12 +42,12 @@ const Hero = () => {
             className="max-w-3xl mx-auto text-center"
           >
             <motion.span
-              className="inline-block uppercase tracking-wider text-sm font-medium mb-6 border border-primary/20 bg-primary/5 text-primary rounded-full px-4 py-1"
+              className="inline-block uppercase tracking-wider text-sm font-bold mb-6 border border-primary/20 bg-primary/5 text-primary rounded-full px-4 py-1"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.2, duration: 0.5 }}
             >
-              From Athletes, For Athletes
+              FROM ATHLETES, FOR ATHLETES
             </motion.span>
             <h1 className="heading-xl mb-6">
               <span className="gold-text">UNSHAKN</span> – Luxury Performance <span className="gold-text">Redefined</span>
@@ -58,17 +58,26 @@ const Hero = () => {
             </p>
             <div className="flex flex-wrap gap-4 items-center justify-center">
               <Link to="/products">
-                <Button size="lg" className="gold-gradient text-black font-medium">
-                  Shop Now
-                  <ArrowRight className="ml-2 h-4 w-4" />
+                <Button size="lg" className="gold-gradient text-black font-bold flex items-center">
+                  <ShoppingCart className="mr-2 h-5 w-5" />
+                  SHOP NOW
                 </Button>
               </Link>
-              <Button variant="outline" size="lg">
-                Join the Movement
+              <Button variant="outline" size="lg" className="font-bold">
+                EXPLORE COLLECTION
+                <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </div>
             
-            <div className="mt-12 flex items-center gap-6 justify-center">
+            <div className="mt-10 p-4 bg-black/40 rounded-lg backdrop-blur-sm border border-white/10">
+              <p className="text-white font-medium mb-2">Payment Methods:</p>
+              <div className="flex items-center justify-center gap-3">
+                <span className="bg-white/10 px-3 py-1 rounded text-sm">Cash on Delivery</span>
+                <span className="bg-white/10 px-3 py-1 rounded text-sm">Online Payment</span>
+              </div>
+            </div>
+            
+            <div className="mt-8 flex items-center gap-6 justify-center">
               <div className="flex -space-x-3">
                 {[1, 2, 3, 4].map((i) => (
                   <div

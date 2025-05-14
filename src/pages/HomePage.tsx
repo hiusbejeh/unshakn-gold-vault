@@ -4,13 +4,15 @@ import Hero from "@/components/home/Hero";
 import Features from "@/components/home/Features";
 import Testimonials from "@/components/home/Testimonials";
 import CTA from "@/components/home/CTA";
+import FeaturedProducts from "@/components/home/FeaturedProducts";
+import SocialLinks from "@/components/social/SocialLinks";
 import InstagramFeed from "@/components/social/InstagramFeed";
-import { Instagram } from "lucide-react";
 
 const HomePage = () => {
   return (
     <MainLayout showToast={true}>
       <Hero />
+      <FeaturedProducts />
       <Features />
       <Testimonials />
       
@@ -25,20 +27,9 @@ const HomePage = () => {
         </div>
         
         <InstagramFeed />
-        
-        <div className="mt-8 text-center">
-          <a
-            href="https://instagram.com/unshaknwears"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-sm text-primary hover:underline inline-flex items-center"
-          >
-            <Instagram className="h-4 w-4 mr-1" />
-            @unshaknwears
-          </a>
-        </div>
       </section>
       
+      <SocialLinks />
       <CTA />
     </MainLayout>
   );
