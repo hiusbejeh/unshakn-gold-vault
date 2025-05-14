@@ -118,7 +118,7 @@ const Navbar = () => {
                     rel="noopener noreferrer"
                     className="text-muted-foreground hover:text-primary transition-colors"
                   >
-                    <TikTok size={20} />
+                    <TikTokIcon size={20} />
                   </a>
                   <a
                     href="https://wa.me/1234567890"
@@ -214,7 +214,7 @@ const Navbar = () => {
                   rel="noopener noreferrer"
                   className="text-muted-foreground hover:text-primary transition-colors"
                 >
-                  <TikTok size={24} />
+                  <TikTokIcon size={24} />
                 </a>
                 <a
                   href="https://wa.me/1234567890"
